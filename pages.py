@@ -1,0 +1,1 @@
+PAGES = [{'url':'https://www.sseaudio.com/training/training-events', 'tag':'div', 'tag_attribute':{'class': 'casestudy_list'}},]
