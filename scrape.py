@@ -42,7 +42,6 @@ def main(pages):
     #os.environ['MODE'] = 'DEVELOPMENT'
 
     database_url = get_credentials()
-    print(database_url)
 
     for i in range(len(pages)):
         page_url = pages[i]['url']
