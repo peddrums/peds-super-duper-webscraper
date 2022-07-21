@@ -35,7 +35,7 @@ def get_page(database_url, page_url, page_attributes_tag, page_attribute_tag_att
 
 def main(pages):
 
-    os.environ['MODE'] = 'DEVELOPMENT'
+    #os.environ['MODE'] = 'DEVELOPMENT'
 
     database_url = get_credentials()
 
