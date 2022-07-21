@@ -4,15 +4,19 @@ from pages import PAGES
 
 
 def get_credentials():
+
     try:
         if os.environ.get('MODE') == 'DEVELOPMENT':
             from credentials import set_credentials
             set_credentials()
 
             return json.loads(os.environ.get('DATABASE_URL'))
+        else:
+            return os.environ['DATABASE_URL']
 
     except:
-        return os.environ['DATABASE_URL']
+        print('In Production Mode')
+
 
 SOURCE_EMAIL_ADDRESS = os.environ.get('SOURCE_EMAIL_ADDRESS')
 SOURCE_EMAIL_PASSWORD = os.environ.get('SOURCE_EMAIL_PASSWORD')
@@ -38,6 +42,7 @@ def main(pages):
     #os.environ['MODE'] = 'DEVELOPMENT'
 
     database_url = get_credentials()
+    print(database_url)
 
     for i in range(len(pages)):
         page_url = pages[i]['url']

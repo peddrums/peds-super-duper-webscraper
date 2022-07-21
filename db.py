@@ -7,8 +7,10 @@ def create_connection(database_url):
         try:
             if os.environ.get('MODE') == 'DEVELOPMENT':
                 return psycopg2.connect(dbname=database_url['database'], user=database_url['user'], password=database_url['password'], host=database_url['host'])
+            else:
+                return psycopg2.connect(database_url, sslmode='require')
         except:
-            return psycopg2.connect(database_url, sslmode='require')
+            print('This has gotten a bit hacky!')
 
     conn = return_connection()
     cur = conn.cursor()
