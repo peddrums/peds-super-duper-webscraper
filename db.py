@@ -55,14 +55,17 @@ def read_from_db(database_url, table, column, row):
     return result
 
 
-def create_table(database_url, table, page_url):
+def create_table(database_url, table, page_url=None):
     connection = create_connection(database_url)
 
     connection['cur'].execute(f"CREATE TABLE IF NOT EXISTS {table} (id SERIAL PRIMARY KEY, page_url TEXT UNIQUE, data TEXT)")
     connection['conn'].commit()
 
-    write_to_db(database_url, 'web_pages', page_url)
-
     close_connection(connection)
+
+    if page_url is None:
+        return
+
+    write_to_db(database_url, 'web_pages', page_url)
 
     return
