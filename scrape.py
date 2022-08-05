@@ -10,12 +10,14 @@ def get_credentials():
             from credentials import set_credentials
             set_credentials()
 
+            print('Development database in use - Main, line 13')
             return json.loads(os.environ.get('DATABASE_URL'))
         else:
+            print('Production database in use - Main, line 16')
             return os.environ['DATABASE_URL']
 
     except:
-        print('In Production Mode')
+        print('Problem Retrieving Database URL')
 
 
 SOURCE_EMAIL_ADDRESS = os.environ.get('SOURCE_EMAIL_ADDRESS')

@@ -6,11 +6,13 @@ def create_connection(database_url):
     def return_connection():
         try:
             if os.environ.get('MODE') == 'DEVELOPMENT':
+                print('Development Database In Use - Dev db connection created - DB, line 9')
                 return psycopg2.connect(dbname=database_url['database'], user=database_url['user'], password=database_url['password'], host=database_url['host'])
             else:
+                print('Production database in use - Production connection created - DB, line 12')
                 return psycopg2.connect(database_url, sslmode='require')
         except:
-            print('This has gotten a bit hacky!')
+            print('Problem creating database connection')
 
     conn = return_connection()
     cur = conn.cursor()
